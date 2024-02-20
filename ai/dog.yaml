@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: dog-class
-    image: pamirova/dog_class:v2
+    image: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
     ports:
     - containerPort: 80
   restartPolicy: Never

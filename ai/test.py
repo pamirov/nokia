@@ -5,7 +5,7 @@ from torchvision import models, transforms
 from torchvision.models import ResNet50_Weights
 from PIL import Image
 
-# Get the absolute path to the current directory
+# Absolute path to the dog.jpg
 current_dir = os.path.dirname(os.path.abspath(__file__))
 image_path = os.path.join(current_dir, "dog.jpg")
 
@@ -13,7 +13,7 @@ image_path = os.path.join(current_dir, "dog.jpg")
 model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
 model.eval()
 
-# Define preprocessing transforms
+# Requiered preprocessing transformation of the pic
 preprocess = transforms.Compose([
     transforms.Resize(256),
     transforms.CenterCrop(224),
@@ -25,11 +25,12 @@ preprocess = transforms.Compose([
 def classify_image(image_path):
     image = Image.open(image_path)
     image = preprocess(image)
-    image = torch.unsqueeze(image, 0)  # Add batch dimension
+    image = torch.unsqueeze(image, 0) 
     with torch.no_grad():
         prediction = model(image)
     return prediction
 
+# Function to test the classify_image functions
 def test_classification():
     prediction = classify_image(image_path)
 

@@ -23,9 +23,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Generate current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
+      - name: Generate current date and time
+        id: timestamp
+        run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M')"
 
       -
         name: Build and push
@@ -33,4 +33,4 @@ jobs:
         with:
           file: ai/Dockerfile
           push: true
-          tags: pamirova/dog_class:${{ steps.date.outputs.date }}
+          tags: pamirova/dog_class:${{ steps.timestamp.outputs.timestamp }}
