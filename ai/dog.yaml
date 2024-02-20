@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dog-class-pod
+spec:
+  containers:
+  - name: dog-class
+    image: pamirova/dog_class:v2
+    ports:
+    - containerPort: 80
+  restartPolicy: Never
